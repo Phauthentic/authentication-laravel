@@ -53,7 +53,7 @@ class EloquentResolverTest extends AuthenticationTestCase
         $model->setTable('users');
         $model->setConnection('default');
 
-        $this->model = model;
+        $this->model = $model;
     }
 
     /**
