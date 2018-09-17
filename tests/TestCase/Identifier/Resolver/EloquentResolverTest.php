@@ -21,20 +21,19 @@ class UserModel extends Model {}
 class EloquentResolverTest extends AuthenticationTestCase
 {
     /**
+     * Eloquent User Model
+     *
+     * @var \Authentication\Test\TestCase\Identifier\Resolver\UserModel
+     */
+    protected $model;
+
+    /**
      * @inheritDoc
      */
     public function setUp(): void
     {
         parent::setUp();
-    }
 
-    /**
-     * testFindDefault
-     *
-     * @return void
-     */
-    public function testFindDefault(): void
-    {
         $resolverMock = $this->getMockBuilder(ConnectionResolverInterface::class)
             ->getMock();
 
@@ -54,7 +53,17 @@ class EloquentResolverTest extends AuthenticationTestCase
         $model->setTable('users');
         $model->setConnection('default');
 
-        $resolver = new EloquentResolver($model);
+        $this->model = model;
+    }
+
+    /**
+     * testFindDefault
+     *
+     * @return void
+     */
+    public function testFindDefault(): void
+    {
+        $resolver = new EloquentResolver($this->model);
         $result = $resolver->find([
             'username' => 'florian'
         ]);
