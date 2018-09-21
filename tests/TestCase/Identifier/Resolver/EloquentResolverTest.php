@@ -1,10 +1,20 @@
 <?php
 declare(strict_types=1);
+/**
+ * Copyright (c) Phauthentic (https://github.com/Phauthentic)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Phauthentic (https://github.com/Phauthentic)
+ * @link          https://github.com/Phauthentic
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
+ */
+namespace Phauthentic\Authentication\Test\TestCase\Identifier\Resolver;
 
-namespace Authentication\Test\TestCase\Identifier\Resolver;
-
-use Authentication\Identifier\Resolver\EloquentResolver;
-use Authentication\Test\TestCase\AuthenticationTestCase;
+use Phauthentic\Authentication\Identifier\Resolver\EloquentResolver;
+use Phauthentic\Authentication\Test\TestCase\AuthenticationTestCase;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Connection;
 use Illuminate\Database\ConnectionResolverInterface;
@@ -23,7 +33,7 @@ class EloquentResolverTest extends AuthenticationTestCase
     /**
      * Eloquent User Model
      *
-     * @var \Authentication\Test\TestCase\Identifier\Resolver\UserModel
+     * @var \Phauthentic\Authentication\Test\TestCase\Identifier\Resolver\UserModel
      */
     protected $model;
 
