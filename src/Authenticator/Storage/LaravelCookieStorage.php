@@ -17,10 +17,52 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * LaravelCookieStorage
+ * Laravel Cookie Storage
+ *
+ * @link https://laravel.com/docs/5.7/requests#accessing-the-request
  */
 class LaravelCookieStorage implements StorageInterface
 {
+    /**
+     * Cookie Name
+     *
+     * @var string
+     */
+    protected $cookieName = 'Auth';
+
+    /**
+     * Cookie life time in minutes
+     *
+     * @var int
+     */
+    protected $cookieLifeTime = 525600;
+
+    /**
+     * Sets the cookie name
+     *
+     * @param string $name Session key name
+     * @return $this
+     */
+    public function setCookieName(string $name): self
+    {
+        $this->cookieName = $name;
+
+        return $this;
+    }
+
+    /**
+     * Sets the cookie life time
+     *
+     * @param string $name Session key name
+     * @return $this
+     */
+    public function setCookieLifeTime(int $minutes): self
+    {
+        $this->cookieLifeTime = $minutes;
+
+        return $this;
+    }
+
     /**
      * Reads the data from the storage.
      *
@@ -29,7 +71,7 @@ class LaravelCookieStorage implements StorageInterface
      */
     public function read(ServerRequestInterface $request)
     {
-        // TODO: Implement read() method.
+        return $request->cookie($this->cookieName);
     }
 
     /**
@@ -42,7 +84,9 @@ class LaravelCookieStorage implements StorageInterface
      */
     public function write(ServerRequestInterface $request, ResponseInterface $response, $data): ResponseInterface
     {
-        // TODO: Implement write() method.
+        return $response->cookie(
+            $this->cookieName, $data, 3800
+        );
     }
 
     /**
@@ -54,6 +98,8 @@ class LaravelCookieStorage implements StorageInterface
      */
     public function clear(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        // TODO: Implement clear() method.
+        return $response->cookie(
+            $this->cookieName, null, 0
+        );
     }
 }
